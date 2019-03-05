@@ -22,7 +22,7 @@ router.get("/test", (req, res) => {
   });
 });
 
-// @route   GET api/users/register
+// @route   POST api/users/register
 // @desc    REgister route
 // @access  Public
 router.post("/register", (req, res) => {
@@ -66,7 +66,7 @@ router.post("/register", (req, res) => {
   });
 });
 
-// @route   GET api/users/login
+// @route   POST api/users/login
 // @desc    Logn user / return jwt Token
 // @access  Public
 router.post("/login", (req, res) => {
@@ -127,6 +127,5 @@ router.get(
     });
   }
 );
-
 
 module.exports = router;
