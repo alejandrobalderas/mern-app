@@ -4,19 +4,14 @@ import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import TextFieldGroup from "../common/TextFieldGroup";
 
-export class Login extends Component {
+class Login extends Component {
   constructor() {
     super();
     this.state = {
-      name: "",
       email: "",
       password: "",
-      password2: "",
-      errors: ""
+      errors: {}
     };
-
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -35,18 +30,20 @@ export class Login extends Component {
     }
   }
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-
-  onSubmit(e) {
+  onSubmit = e => {
     e.preventDefault();
+
     const userData = {
       email: this.state.email,
       password: this.state.password
     };
+
     this.props.loginUser(userData);
-  }
+  };
+
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
   render() {
     const { errors } = this.state;
@@ -62,7 +59,7 @@ export class Login extends Component {
               </p>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
-                  placeholder="Email Adress"
+                  placeholder="Email Address"
                   name="email"
                   type="email"
                   value={this.state.email}
